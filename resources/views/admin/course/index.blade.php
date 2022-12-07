@@ -1,4 +1,4 @@
-@extends('teacher.master')
+@extends('admin.master')
 
 @section('body')
     <div class="row">
@@ -35,12 +35,18 @@
                                     <img src="{{asset('/')}}{{$course->image}}" class="img-fluid" alt="" height="100" width="100" >
                                 </td>
                                 <td>
-                                    <a href="{{route('course.edit',['id'=>$course->id])}}" class=" me-3 btn btn-success btn-sm float-left">
-                                        <i class="fa fa-edit"></i>
+                                    <a href="{{route('admin.course-detail',['id'=>$course->id])}}" class=" me-3 btn btn-outline-success btn-sm float-left">
+                                        <i class="fa fa-book-open"></i>
                                     </a>
-                                    <form action="{{route('course.delete',['id'=>$course->id])}}" method="post" >
+                                    <a href="{{route('admin.update-course-status',['id'=>$course->id])}}" class=" me-3 btn btn-outline-info btn-sm float-left">
+                                        <i class="fa fa-arrow-up"></i>
+                                    </a>
+                                    <a href="{{route('admin.update-course-offer-status',['id'=>$course->id])}}" class=" me-3 btn btn-outline-primary btn-sm float-left">
+                                        <i class="fa fa-book-dead"></i>
+                                    </a>
+                                    <form action="{{route('admin.course-delete',['id'=>$course->id])}}" method="post" >
                                         @csrf
-                                        <button  type="submit" class="  btn btn-danger btn-sm float-left">
+                                        <button  type="submit" class="  btn btn-outline-danger btn-sm float-left">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>

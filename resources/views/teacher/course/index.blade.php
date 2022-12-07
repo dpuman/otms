@@ -13,10 +13,10 @@
                         <div class="form-group row mb-4">
                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Course Category</label>
                             <div class="col-sm-9">
-                                <select name="category" id="" class="form-control">
+                                <select name="category_id" id="" class="form-control">
                                     <option value="" selected>-- Select Course Category --</option>
-                                    @foreach($categories as $cat)
-                                    <option value="cat_name" >{{$cat->name}}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}" >{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
