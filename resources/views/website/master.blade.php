@@ -21,8 +21,10 @@
             <li class="dropdown">
                 <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Training Category</a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{route('training.category')}}" class="dropdown-item">Web Design</a></li>
-                    <li><a href="{{route('training.category')}}" class="dropdown-item">Web Development</a></li>
+                    @foreach($categories as $category)
+                        <li><a href="{{route('training.category',['id'=>$category->id])}}" class="dropdown-item">{{$category->name}}</a></li>
+                    @endforeach
+
                 </ul>
 
             </li>

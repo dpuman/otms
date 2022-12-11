@@ -10,14 +10,19 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\AdminCourseController;
 
+use App\Http\Controllers\EnrollController;
+
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about-us', [HomeController::class,'about'])->name('about');
-Route::get('/training-category', [HomeController::class,'categoryTraining'])->name('training.category');
+Route::get('/training-category/{id}', [HomeController::class,'categoryTraining'])->name('training.category');
 Route::get('/all-training', [HomeController::class,'allTraining'])->name('training.all');
-Route::get('/training-detail', [HomeController::class,'trainingDetail'])->name('training.detail');
+Route::get('/training-detail/{id}', [HomeController::class,'trainingDetail'])->name('training.detail');
 Route::get('/contact-us', [HomeController::class,'contact'])->name('contact');
 Route::get('/login-registration', [HomeController::class,'loginRegistration'])->name('login-registration');
+
+Route::get('/training.enroll/{id}', [EnrollController::class,'index'])->name('training.enroll');
+Route::post('/training-new-enroll/{id}', [EnrollController::class,'newEnroll'])->name('training.new-enroll');
 
 Route::get('/teacher/login',[TeacherAuthController::class,'index'])->name('teachers.login');
 Route::post('/teacher/login',[TeacherAuthController::class,'login'])->name('teachers.login');

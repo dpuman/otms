@@ -10,7 +10,7 @@ class Course extends Model
 {
     use HasFactory;
 
-    public static $image,$imageName,$imageDirectory,$imageExtension,$course,$imagePath;
+    public static $image,$imageName,$imageDirectory,$imageExtension,$course,$imagePath,$message;
 
     public static function getImageUrl($request)
     {
@@ -73,35 +73,41 @@ class Course extends Model
         self::$course->delete();
     }
 
+    public function teacher(){
+
+        return $this->belongsTo(Teacher::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
     public static function updateStatus($id){
-        self::$course = Course::find($id);
-        self::$course->status = 1;
+        self::$course =  Course::find($id);
+
+        if(self::$course->status == 1){
+            self::$course->status = 0;
+            self::$message = 'Course status info unpublished';
+        }else{
+            self::$course->status = 1;
+            self::$message = 'Course status info Published';
+        }
+
         self::$course->save();
+        return self::$message;
     }
 
     public  static function updateOfferStatus($request,$id)
     {
-        self::$course =Course::find($id);
-        if($request->file('image'))
-        {
-            if(file_exists(self::$course->image))
-            {
-                unlink(self::$course->image);
-            }
-            self::$imagePath = self::getImageUrl($request);
-        }
-        elseif (self::$course->offer_image)
-        {
-            self::$imagePath = self::$course->offer_image;
-        }else{
-            self::$imagePath = '';
-        }
+        self::$course = Course::find($id);
 
-        self::$course->offer_fee    = $request->offer_fee;
-        self::$course->offer_image  = self::$imagePath;
-        self::$course->date         = $request->date;
-        self::$course->status       = 1;
-
+        if(file_exists(self::$course->offer_image))
+        {
+            unlink(self::$course->offer_image);
+        }
+        self::$course->offer_fee = $request->offer_fee;
+        self::$course->date = $request->offer_date;
+        self::$course->offer_status = 1;
+        self::$course->offer_image = self::getImageUrl($request);
         self::$course->save();
 
     }

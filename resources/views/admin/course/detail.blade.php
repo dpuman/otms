@@ -6,55 +6,82 @@
             <div class="card ">
                 <div class="card-header bg-dark text-white">Course Details</div>
                 <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <th>Title</th>
-                        <td>{{$course->title}}</td>
-                    </tr>
-                    <tr>
-                        <th>Category</th>
-                        <td>{{$course->category_id}}</td>
-                    </tr>
-                    <tr>
-                        <th>Teacher</th>
-                        <td>{{$course->teacher_id}}</td>
-                    </tr>
-                    <tr>
-                        <th>Objective</th>
-                        <td>{{$course->objective}}</td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>DESCRIPTION</td>
-                    </tr>
-                    <tr>
-                        <th>Starting Date</th>
-                        <td>{{$course->starting_date}}</td>
-                    </tr>
-                    <tr>
-                        <th>Fee</th>
-                        <td>{{$course->fee}}</td>
-                    </tr>
-                    <tr>
-                        <th>image</th>
-                        <td>
-                            <img src="{{asset('/')}}{{$course->image}}" alt="" height="100" width="100">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Hit Count</th>
-                        <td>{{$course->hit_count}}</td>
-                    </tr>
-                    <tr>
-                        <th>Offer Status</th>
-                        <td>{{$course->offer_status}}</td>
-                    </tr>
+                    <table id="" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
-                    <tr>
-                        <th>Status</th>
-                        <td>{{$course->status}}</td>
-                    </tr>
-                </table>
+                        <tr>
+                            <th>Course Id</th>
+                            <td>{{$course->id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Title</th>
+                            <td>{{$course->title}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Author</th>
+                            <td>{{$course->teacher->name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Category</th>
+                            <td>{{$course->category->name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Objective</th>
+                            <td>{{$course->objective}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Description</th>
+                            <td>{!! $course->description !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Starting Date</th>
+                            <td>{{$course->starting_date}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Fee</th>
+                            <td>{{$course->fee}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course Image</th>
+                            <td>
+                                <img src="{{asset('')}}{{$course->image}}" alt="" height="200" width="200">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Total View</th>
+                            <td>{{$course->hit_count}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Course offer Status</th>
+                            <td>{{$course->offer_status == 1 ? "Course Published on offer": "Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th>Course published Status</th>
+                            <td>{{$course->status == 1 ? "Course Published": "Not Available"}}</td>
+                        </tr>
+
+                        @if($course->offer_status == 1)
+                            <tr>
+                                <th>Offer Fee</th>
+                                <td>{{$course->offer_fee}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>Offer Image</th>
+                                <td>
+                                    <img src="{{asset('')}}{{$course->offer_image}}" alt="" height="200" width="200">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Offer Date</th>
+                                <td>{{$course->date}}</td>
+                            </tr>
+                        @endif
+
+
+                    </table>
 
                 </div>
 

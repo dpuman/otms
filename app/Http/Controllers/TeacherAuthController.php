@@ -41,6 +41,10 @@ class TeacherAuthController extends Controller
     }
 
     public function logout(){
+        Session::forget('teacher_id');
+        Session::forget('teacher_name');
+
+        return redirect('/teacher/login')->with('message',"Successfully logged-out") ;
 
     }
 }

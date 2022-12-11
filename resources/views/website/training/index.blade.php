@@ -18,76 +18,26 @@
             </div>
 
             <div class="row mt-3">
+                @foreach($courses as $course)
                 <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
+                    <div class="card h-100">
+                        <img src="{{asset('/')}}{{$course->image}}" alt="">
                         <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
+                            <h4>{{$course->title}}</h4>
+                            <p class="mb-0">TK. {{$course->price}}</p>
+                            <p >Starting Date: {{$course->starting_date}}</p>
                             <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
+                            <a href="{{route('training.detail',['id'=>$course->id])}}" class="btn btn-success">Read More</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
-                        <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
-                            <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
-                        <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
-                            <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
-                        <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
-                            <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
-                        <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
-                            <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <img src="{{asset('/')}}website/images/team-4.jpg" alt="">
-                        <div class="card-body">
-                            <h4>PHP With Laravel Framework</h4>
-                            <p class="mb-0">TK. 25000</p>
-                            <p >Starting Date: 10-01-2023</p>
-                            <hr/>
-                            <a href="" class="btn btn-success">Read More</a>
-                        </div>
+                @endforeach
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="float-end">
+                        {{$courses->links()}}
                     </div>
                 </div>
             </div>

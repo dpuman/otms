@@ -16,8 +16,8 @@ class AdminCourseController extends Controller
     }
 
     public function updateStatus($id){
-        Course::updateStatus($id);
-        return redirect('/admin/manage-course')->with('message','Status updated successfully');
+
+        return redirect('/admin/manage-course')->with('message',Course::updateStatus($id));
     }
 
     public function updateOfferStatus($id){
