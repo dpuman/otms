@@ -111,4 +111,11 @@ class Course extends Model
         self::$course->save();
 
     }
+
+    public static function updateHitCount($id){
+        self::$course = Course::find($id);
+        self::$course->hit_count = self::$course->hit_count + 1;
+        self::$course->save();
+        return self::$course;
+    }
 }

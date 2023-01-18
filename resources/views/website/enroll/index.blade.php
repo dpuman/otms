@@ -15,20 +15,21 @@
                     <div class="card border-0 shadow h-100">
                         <div class="bg-dark text-white text-center py-1 display-6">Course Enroll Form</div>
                         <div class="card-body">
+                            <h4 class="text-center text-danger">{{Session::get('message')}}</h4>
 
                             <form action="{{route('training.new-enroll',['id'=>$id])}}" method="post"  >
                                 @csrf
                                 <div class="row mb-3">
                                     <label for="" class="col-md-3">Full Name</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="name">
+                                        <input @if(Session::get('student_id')) value="{{$student->name}}" readonly @endif type="text" class="form-control" name="name">
                                         <span class="text-warning">{{$errors->has('name') ? $errors->first('name') : '' }}</span>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="" class="col-md-3">Email Address</label>
                                     <div class="col-md-9">
-                                        <input type="email" class="form-control" name="email">
+                                        <input  @if(Session::get('student_id')) value="{{($student->email)}}" readonly @endif type="email" class="form-control" name="email">
                                         <span class="text-warning">{{$errors->has('email') ? $errors->first('email') : '' }}</span>
 
                                     </div>
@@ -36,7 +37,9 @@
                                 <div class="row mb-3">
                                     <label for="" class="col-md-3">Mobile Number</label>
                                     <div class="col-md-9">
-                                        <input type="number" class="form-control" name="mobile">
+                                        <input @if(Session::get('student_id')) value="{{($student->mobile)}}" readonly @endif  type="number" class="form-control" name="mobile">
+                                        <span class="text-warning">{{$errors->has('mobile') ? $errors->first('mobile') : '' }}</span>
+
                                     </div>
                                 </div>
                                 <div class="row mb-3">
